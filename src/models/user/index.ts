@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
-import { User } from "@utils";
+import { UserProps } from "@utils";
 
 const Schema = mongoose.Schema;
 
-const user = new Schema<User>({
+const user = new Schema<UserProps>({
   username: {
     type: String,
     required: true,
@@ -20,6 +20,11 @@ const user = new Schema<User>({
     type: String,
     required: true,
   },
+  blocked: Boolean,
+  verified: {
+    type: Boolean,
+    require: true
+  }
 });
 
 export const UserModel = mongoose.model("user", user);

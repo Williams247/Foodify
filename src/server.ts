@@ -5,14 +5,14 @@ import mongoose from "mongoose";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import appRouter from "@routes";
-import { User } from "@utils";
+import { UserProps } from "@utils";
 
 dotenv.config();
 
 declare global {
   namespace Express {
     interface Request {
-      user: User;
+      user: UserProps;
     }
   }
 }

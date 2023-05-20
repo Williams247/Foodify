@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import { UserModel } from "@models";
-import { UserTypeEnum } from "@utils"
+import { UserTypeEnum, UserProps } from "@utils";
 
 export const register = async (request: Request, response: Response) => {
   try {
@@ -24,11 +24,12 @@ export const register = async (request: Request, response: Response) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const createUser = new UserModel({
+    const createUser = new UserModel<UserProps>({
       email,
       username,
       password: hashedPassword,
       role,
+      verified: UserTypeEnum.Admin === role ? true : false
     });
 
     await createUser.save();
