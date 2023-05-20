@@ -4,6 +4,7 @@ import {
   fetchCategoryById,
   createCategory,
   updateCategoryById,
+  deleteCategory,
 } from "@controllers";
 import { validateCreateUpdateCategory, validateId } from "@middlewares";
 
@@ -18,5 +19,7 @@ router.put(
   validateCreateUpdateCategory,
   updateCategoryById
 );
+
+router.delete("/delete-category/:id", validateId, deleteCategory);
 
 export const categoryRoutes = { router };
