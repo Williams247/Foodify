@@ -1,24 +1,44 @@
-import { FetchProps, FetchByIdProps } from "@utils";
+import { FetchProps, FetchByIdProps, error404 } from "@utils";
 
-export const fetchAll = async ({ model, page, limit }: FetchProps) => {
+export const fetchAll = async ({
+  model,
+  page,
+  limit,
+  searchParams,
+  populate
+}: FetchProps) => {
   try {
     const pageReq = Number(page);
     const limitReq = Number(limit);
 
-    const pageValue = pageReq > 1 ? 1 : pageReq;
+    const pageValue = pageReq > 1 || !pageReq ? 1 : pageReq;
+    const limitValue = !limitReq ? 5 : limitReq;
 
     const responseData = await model
-      .find()
+      .find({ ...searchParams })
       .skip((pageValue - 1) * pageValue)
-      .limit(limitReq);
+      .limit(limitValue)
+      .populate(populate ?? "").select("-password");
 
     const count = await model.count();
 
+    if (!responseData) {
+      return {
+        status: 404,
+        message: error404,
+        data: null,
+      };
+    }
+
     return {
-      totalItems: count,
-      currentPage: pageValue,
-      pages: Math.ceil(count / limitReq),
-      results: responseData,
+      status: 200,
+      message: "Success",
+      data: {
+        totalItems: count,
+        currentPage: pageValue,
+        pages: Math.ceil(count / limitValue),
+        results: responseData,
+      },
     };
   } catch (error) {
     throw error;
@@ -31,7 +51,8 @@ export const fetchById = async ({ model, id }: FetchByIdProps) => {
     if (!data) {
       return {
         status: 404,
-        message: "Resource not found",
+        message: error404,
+        data: null,
       };
     }
 

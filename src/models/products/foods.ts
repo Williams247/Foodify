@@ -6,7 +6,8 @@ const FoodSchema = mongoose.Schema;
 const food = new FoodSchema<FoodsProps>({
   categoryId: {
     type: mongoose.Types.ObjectId,
-    ref: "category"
+    ref: "category",
+    required: true
   },
   name: {
     type: String,
@@ -17,10 +18,6 @@ const food = new FoodSchema<FoodsProps>({
     required: true,
   },
   description: String,
-  slug: {
-    type: String,
-    required: true,
-  },
   price: {
     type: Number,
     required: true,

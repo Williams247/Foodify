@@ -4,6 +4,7 @@ export interface CategoryProps {
   name?: string;
   slug?: string;
   description?: string;
+  image?: string
 }
 
 export interface FoodsProps {
@@ -11,6 +12,5 @@ export interface FoodsProps {
   categoryId?: SchemaDefinitionProperty;
   image?: string;
   description?: string;
-  slug?: string;
   price?: number;
 }

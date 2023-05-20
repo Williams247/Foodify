@@ -10,6 +10,7 @@ export const validateCreateUpdateCategory = (
   const schema = Joi.object<CategoryProps>({
     name: Joi.string().required().label("Category name field"),
     description: Joi.string().optional(),
+    image: Joi.string().optional(),
   });
 
   const { error } = schema.validate(request.body);

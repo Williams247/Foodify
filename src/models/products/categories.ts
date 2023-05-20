@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { CategoryProps } from "@utils"
+import { CategoryProps } from "@utils";
 
 const CategorySchema = mongoose.Schema;
 
@@ -12,7 +12,8 @@ const category = new CategorySchema<CategoryProps>({
     type: String,
     required: true,
   },
-  description: String
+  description: String,
+  image: String,
 });
 
 export const CategoryModel = mongoose.model("category", category);

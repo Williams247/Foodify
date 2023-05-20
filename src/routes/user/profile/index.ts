@@ -1,10 +1,10 @@
 import express from "express";
-import { Auth } from "@middlewares";
-import { Profile } from "@controllers";
+import { auth } from "@middlewares";
+import { profile } from "@controllers";
 import { UserTypeEnum } from "@utils";
 
 const router = express.Router();
 
-router.get("/user", Auth({ userType: UserTypeEnum.User }), Profile);
+router.get("/user", auth({ userType: UserTypeEnum.User }), profile);
 
 export const profileRoutes = { router };

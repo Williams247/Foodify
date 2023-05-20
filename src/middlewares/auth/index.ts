@@ -2,8 +2,13 @@ import { Request, Response, NextFunction } from "express";
 import JWT from "jsonwebtoken";
 import { UserTypeEnum, UserProps } from "@utils";
 
-export const Auth =
-  ({ userType }: { userType: UserTypeEnum }) =>
+interface Props {
+  userType?: UserTypeEnum;
+  forAllUsers?: boolean;
+}
+
+export const auth =
+  ({ userType, forAllUsers }: Props) =>
   async (request: Request, response: Response, next: NextFunction) => {
     try {
       let token = request.headers["authorization"];
@@ -20,10 +25,16 @@ export const Auth =
       }
 
       token = token.slice(7, token.length);
-      const authorized = await JWT.verify(
+      const authorized = (await JWT.verify(
         token,
         process.env.SECRET as string
-      ) as UserProps
+      )) as UserProps;
+
+      if (forAllUsers) {
+        request.user = authorized;
+        next();
+        return;
+      }
 
       if (authorized.role !== userType) {
         return response.status(401).json({ message: "Unauthorized" });

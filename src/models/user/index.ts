@@ -21,6 +21,7 @@ const user = new Schema<UserProps>({
     required: true,
   },
   blocked: Boolean,
+  image: String,
   verified: {
     type: Boolean,
     require: true

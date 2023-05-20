@@ -12,13 +12,13 @@ export const fetchAllCategories = async (
       query: { page, limit },
     } = request;
 
-    const allCategories = await fetchAll({
+    const { status, message, data } = await fetchAll({
       model: CategoryModel,
-      page: page ?? 1,
-      limit: limit ?? 5,
+      page: page,
+      limit: limit,
     });
 
-    response.status(200).json({ message: "Success", data: allCategories });
+    response.status(status).json({ message, data });
   } catch (error) {
     response.status(500).json({ message: "Failed fetch categories." });
     console.log(error);

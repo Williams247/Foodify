@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { idPattern, invalidId } from "@utils";
 
 export const validateId = (
   request: Request,
@@ -7,8 +8,8 @@ export const validateId = (
 ) => {
   const id = request.params.id as string;
 
-  if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-    response.status(422).json({ message: "Invalid id" });
+  if (!id.match(idPattern)) {
+    response.status(422).json({ message: invalidId });
     return;
   }
 

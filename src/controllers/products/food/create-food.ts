@@ -25,7 +25,6 @@ export const createFood = async (request: Request, response: Response) => {
       for (let product = 0; product < productQuantity; product++) {
         allProducts.push({
           name,
-          slug: selectedCategory.slug,
           categoryId: id,
           image,
           description,
@@ -40,7 +39,6 @@ export const createFood = async (request: Request, response: Response) => {
 
     const createFood = new FoodModel<FoodsProps>({
       name,
-      slug: selectedCategory.slug,
       categoryId: id,
       image,
       description,
