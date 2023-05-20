@@ -9,14 +9,14 @@ export const login = async (request: Request, response: Response) => {
     const user = await UserModel.findOne({ email });
 
     if (!user) {
-      response.status(403).json({ message: "Invalid email address" });
+      response.status(403).json({ message: "Invalid email or password" });
       return;
     }
 
     const userPassword = await bcrypt.compare(password, user.password);
 
     if (!userPassword) {
-      response.status(403).json({ message: "Invalid password" });
+      response.status(403).json({ message: "Invalid email or password" });
       return;
     }
 

@@ -7,6 +7,6 @@ export interface User {
 }
 
 export enum UserTypeEnum {
-  User = "User",
-  Admin = "Admin",
+  User = "user",
+  Admin = "admin",
 }

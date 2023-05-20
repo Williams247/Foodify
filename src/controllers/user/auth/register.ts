@@ -1,10 +1,20 @@
 import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import { UserModel } from "@models";
+import { UserTypeEnum } from "@utils"
 
 export const register = async (request: Request, response: Response) => {
   try {
     const { email, username, password, role } = request.body;
+
+    if (role === UserTypeEnum.Admin) {
+      const isAdmin = await UserModel.find({ role }).count();
+      if (isAdmin > 0) {
+        response.status(409).json({ message: "An admin is already registered" })
+        return
+      }
+    }
+
     const user = await UserModel.findOne({ email });
 
     if (user) {
