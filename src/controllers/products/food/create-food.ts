@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { FoodModel, CategoryModel } from "@models";
 import { FoodsProps } from "@utils";
 
-// Creates a particular food based on a category
 export const createFood = async (request: Request, response: Response) => {
   const {
     body: { name, image, description, price },
@@ -29,6 +28,7 @@ export const createFood = async (request: Request, response: Response) => {
           image,
           description,
           price,
+          ratings: []
         });
       }
 
@@ -43,6 +43,7 @@ export const createFood = async (request: Request, response: Response) => {
       image,
       description,
       price,
+      ratings: []
     });
 
     await createFood.save();

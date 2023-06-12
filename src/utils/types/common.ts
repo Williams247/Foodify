@@ -18,8 +18,16 @@ export interface FetchByIdProps {
   id: unknown;
 }
 
+export interface SumProductPrice {
+  price: number;
+}
+
 export interface SumProps {
-  product: {
-    price: number;
-  };
+  product: SumProductPrice;
+}
+
+export interface SendMailProps {
+  mailTo: string;
+  subject: string;
+  text: string;
 }

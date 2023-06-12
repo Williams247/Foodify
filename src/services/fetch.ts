@@ -5,7 +5,7 @@ export const fetchAll = async ({
   page,
   limit,
   searchParams,
-  populate
+  populate,
 }: FetchProps) => {
   try {
     const pageReq = Number(page);
@@ -18,7 +18,8 @@ export const fetchAll = async ({
       .find({ ...searchParams })
       .skip((pageValue - 1) * pageValue)
       .limit(limitValue)
-      .populate(populate ?? "").select("-password");
+      .populate(populate ?? "")
+      .select("-password");
 
     const count = await model.count();
 
@@ -43,6 +44,33 @@ export const fetchAll = async ({
   } catch (error) {
     throw error;
   }
+};
+
+export const fetchAllWithoutPaginate = async ({
+  model,
+  searchParams,
+  populate,
+}: FetchProps) => {
+  const responseData = await model
+    .find({ ...searchParams })
+    .populate(populate ?? "")
+    .select("-password");
+
+  if (!responseData) {
+    return {
+      status: 404,
+      message: error404,
+      data: null,
+    };
+  }
+
+  return {
+    status: 200,
+    message: "Success",
+    data: {
+      results: responseData,
+    },
+  };
 };
 
 export const fetchById = async ({ model, id }: FetchByIdProps) => {

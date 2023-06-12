@@ -4,7 +4,12 @@ export interface CategoryProps {
   name?: string;
   slug?: string;
   description?: string;
-  image?: string
+  image?: string;
+}
+
+export interface RateProps {
+  userId?: string;
+  rate?: number
 }
 
 export interface FoodsProps {
@@ -13,4 +18,5 @@ export interface FoodsProps {
   image?: string;
   description?: string;
   price?: number;
+  ratings?: RateProps[];
 }
