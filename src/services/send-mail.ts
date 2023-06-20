@@ -6,7 +6,7 @@ dotenv.config();
 
 export const sendEMail = async ({ mailTo, subject, text }: SendMailProps) => {
   const client = new MailtrapClient({
-    endpoint: process.env.MAIL_TRAP_ENDPOINT,
+    endpoint: process.env.MAIL_TRAP_URL,
     token: process.env.TOKEN as string,
   });
 

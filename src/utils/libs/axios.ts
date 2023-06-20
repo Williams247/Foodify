@@ -1,8 +1,9 @@
 import axios from "axios";
 import dotenv from "dotenv";
+
 dotenv.config();
 
-const axiosInstance = axios.create({ baseURL: "https://api.paystack.co" });
+const axiosInstance = axios.create({ baseURL: process.env.PAY_STACK_URL });
 
 axiosInstance.defaults.headers.common[
   "Authorization"
