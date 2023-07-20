@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { axiosInstance } from "@utils";
 
+// This is still in progress ATM
 export const initPayment = async (request: Request, response: Response) => {
   try {
     const { data: { data }} = await axiosInstance.post("/transaction/initialize", {

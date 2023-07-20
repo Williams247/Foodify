@@ -6,9 +6,6 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import appRouter from "@routes";
 import { UserProps } from "@utils";
-import { sendEMail } from "@services";
-
-// sendEMail({ mailTo: "williamsalexjr@gmail.com", subject: "A message", text: "A message from node app" });
 
 dotenv.config();
 
