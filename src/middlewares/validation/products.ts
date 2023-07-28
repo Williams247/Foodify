@@ -16,7 +16,7 @@ export const validateCreateUpdateCategory = (
   const { error } = schema.validate(request.body);
 
   if (error) {
-    response.status(422).json({ message: error.message });
+    response.status(400).json({ message: error.message });
     return;
   }
 
@@ -38,7 +38,7 @@ export const validateFood = (
   const { error } = schema.validate(request.body);
 
   if (error) {
-    response.status(422).json({ message: error.message });
+    response.status(400).json({ message: error.message });
     return;
   }
 
@@ -57,7 +57,7 @@ export const validateFoodRating = (
   const { error } = schema.validate(request.body);
 
   if (error) {
-    response.status(422).json({ message: error.message });
+    response.status(400).json({ message: error.message });
     return;
   }
 
