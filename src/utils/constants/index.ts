@@ -1,3 +1,3 @@
 export * from "./domain";
 export * from "./error-messages";
-export * from "./regx"
+export * from "./regx";

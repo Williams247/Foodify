@@ -8,11 +8,11 @@ export const fetchAll = async ({
   populate,
 }: FetchProps) => {
   try {
-    const pageReq = Number(page);
-    const limitReq = Number(limit);
+    const pageReq = Number(page ?? 1);
+    const limitReq = Number(limit ?? 5);
 
-    const pageValue = pageReq > 1 || !pageReq ? 1 : pageReq;
-    const limitValue = !limitReq ? 5 : limitReq;
+    const pageValue = pageReq === 0 ? 1 : pageReq;
+    const limitValue = limitReq === 0 ? 5 : limitReq;
 
     const responseData = await model
       .find({ ...searchParams })
