@@ -43,7 +43,7 @@ app.use((request: Request, response: Response) => {
   response.status(404).json({ message: "Route not found" });
 });
 
-const port = 4300;
+const port = 4000;
 
 app.listen(port, async (): Promise<void> => {
   try {
