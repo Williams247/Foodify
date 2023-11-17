@@ -43,11 +43,12 @@ app.use((request: Request, response: Response) => {
   response.status(404).json({ message: "Route not found" });
 });
 
-const port = 4000;
+const port = process.env.PORT;
+const uri = process.env.NODE_ENV === "production" ? process.env.LIVE_URI : process.env.LOCAL_URI;
 
 app.listen(port, async (): Promise<void> => {
   try {
-    await mongoose.connect(process.env.LOCAL_URI as string);
+    await mongoose.connect(uri as string);
     console.log("Connection established");
   } catch (error) {
     console.log(error);
