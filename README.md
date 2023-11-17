@@ -1,6 +1,6 @@
-# Auth System
+# Foodify
 
-This is basically a template or a building block for my backend applications.
+An e-commerce platform for food.
 
 ## yarn install
 
@@ -13,3 +13,6 @@ This command runs the application in production mode.
 ## yarn dev
 
 This command runs the application in development mode
+
+## POSTMAN documentation
+https://documenter.getpostman.com/view/13255061/2s93kz6R5t#intro
