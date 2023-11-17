@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon ./src/server.ts",
-    "build": "yarn install && yarn add --dev typescript nodemon && tsc",
+    "build": "yarn install && yarn add --dev @types/bcryptjs @types/dotenv @types/express @types/joi @types/jsonwebtoken @types/mongoose @types/morgan @types/node typescript nodemon ts-node typescript && tsc",
     "start": "node ./build/server.js",
     "generate": "npx tsc",
     "tsc:init": "tsc --init"
