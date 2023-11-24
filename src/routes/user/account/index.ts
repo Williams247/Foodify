@@ -1,9 +1,9 @@
 import express from "express";
 import { auth } from "@middlewares";
-import { profile } from "@controllers";
+import { fetchAccount } from "@controllers";
 
 const router = express.Router();
 
-router.get("/user", auth({ forAllUsers: true }), profile);
+router.get("/user", auth({ forAllUsers: true }), fetchAccount);
 
 export const profileRoutes = { router };

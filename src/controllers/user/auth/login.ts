@@ -33,10 +33,7 @@ export const login = async (request: Request, response: Response) => {
 
     response.status(200).json({
       message: "Login successful",
-      data: {
-        user: payload,
-        token: `Bearer ${token}`,
-      },
+      data: { token: `Bearer ${token}` },
     });
   } catch (error) {
     response.status(500).json({ message: "Failed to login" });
