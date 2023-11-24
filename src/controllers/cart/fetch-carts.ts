@@ -10,8 +10,6 @@ export const fetchCarts = async (request: Request, response: Response) => {
       query: { page, limit },
     } = request;
 
-    console.log(request.user.id);
-
     const { status, message, data } = await fetchAllWithoutPaginate({
       model: CartModel,
       page,
