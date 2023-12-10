@@ -9,14 +9,25 @@ export const login = async (request: Request, response: Response) => {
     const user = await UserModel.findOne({ email });
 
     if (!user) {
-      response.status(403).json({ message: "Invalid email or password" });
+      response.status(404).json({
+        success: false,
+        status: 404,
+        message: "Invalid email or password",
+      });
       return;
     }
 
-    const userPassword = await bcrypt.compare(password, user.password as string);
+    const userPassword = await bcrypt.compare(
+      password,
+      user.password as string
+    );
 
     if (!userPassword) {
-      response.status(403).json({ message: "Invalid email or password" });
+      response.status(404).json({
+        success: false,
+        status: 404,
+        message: "Invalid email or password",
+      });
       return;
     }
 
@@ -32,11 +43,15 @@ export const login = async (request: Request, response: Response) => {
     });
 
     response.status(200).json({
+      success: true,
+      status: 200,
       message: "Login successful",
       data: { token: `Bearer ${token}` },
     });
   } catch (error) {
-    response.status(500).json({ message: "Failed to login" });
+    response
+      .status(500)
+      .json({ success: false, status: 500, message: "Failed to login" });
     console.log(error);
   }
 };
