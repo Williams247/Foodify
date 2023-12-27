@@ -6,7 +6,7 @@ import { slugFormat } from "@utils";
 export const createCategory = async (request: Request, response: Response) => {
   try {
     const {
-      body: { name, description },
+      body: { name, description, image },
     } = request;
 
     const slugName = slugFormat(name);
@@ -28,6 +28,7 @@ export const createCategory = async (request: Request, response: Response) => {
       name,
       slug: slugName,
       description,
+      image: image ?? ''
     });
 
     await category.save();
