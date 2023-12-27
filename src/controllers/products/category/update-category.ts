@@ -10,7 +10,7 @@ export const updateCategoryById = async (
   try {
     const {
       params: { id },
-      body: { name, description },
+      body: { name, description, image },
     } = request;
 
     const category = await CategoryModel.findByIdAndUpdate(id);
@@ -18,6 +18,7 @@ export const updateCategoryById = async (
       category.name = name ?? category.name;
       category.slug = slugFormat(name ?? category.name);
       category.description = description ?? category.description;
+      category.image = image ?? category.image;
       await category.save();
       response.status(200).json({ message: "Category updated" });
       return;
